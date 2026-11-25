@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+.tools/
+artifacts/
+.env
+TestResults/
+**/TestResults/
+.vs/
+frontend/output/
+frontend/.playwright-cli/
+coverage/
+*.user
+*.log
