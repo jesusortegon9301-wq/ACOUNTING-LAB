@@ -2241,6 +2241,8 @@ Para evitar afectar XAMPP y los proyectos existentes, se mantuvo MariaDB en el p
 | Password | La contraseña creada durante la configuración; no incluirla en documentación compartida. |
 | SSL | Not Enabled para el entorno local, si así quedó configurado. |
 
+> Guía operativa complementaria: [MySQL Server local y Workbench (puerto 3307)](MYSQL_WORKBENCH_LOCAL.md).
+
 
 ### 13.3 Verificación del servidor
 

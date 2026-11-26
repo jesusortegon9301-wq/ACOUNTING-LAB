@@ -366,10 +366,15 @@ conservar los datos locales.
   Health check            http://localhost:5208/health/live
   Readiness check         http://localhost:5208/health/ready
   MySQL de demostración   `127.0.0.1:3308`
+  MySQL Server local      `127.0.0.1:3307` (MySQL Workbench)
 
 La base de datos de demostración utiliza el servicio Docker configurado
 por el proyecto. El perfil de pruebas utiliza una instancia y una base
-separadas.
+separadas. El MySQL Server 8.0.46 local se administra con MySQL Workbench
+en el puerto `3307` y es independiente de Docker y del MariaDB de XAMPP en
+`3306`. Consulta [MySQL Server local y Workbench](docs/MYSQL_WORKBENCH_LOCAL.md)
+para la conexión, la verificación con `SELECT VERSION(), @@port` y la base
+desechable de integración.
 
 ## Ejecución del backend sin Docker
 
@@ -561,6 +566,7 @@ La documentación complementaria se encuentra en `docs/`:
 -   [Política de uso de inteligencia
     artificial](docs/POLITICA_USO_IA.md)
 -   [Estado y evidencia de entrega](docs/ENTREGA.md)
+-   [MySQL Server local y Workbench (puerto 3307)](docs/MYSQL_WORKBENCH_LOCAL.md)
 -   [Informe técnico y académico (Markdown)](docs/INFORME_TECNICO_ACADEMICO.md)
 -   [Informe maestro original (DOCX)](docs/Informe_Maestro_AccountingLab_2026_Unificado.docx)
 
