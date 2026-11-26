@@ -184,7 +184,7 @@ flowchart TB
 | MySQL de demostración Docker | 3308 | Base por defecto accountinglab. |
 | MySQL desechable de pruebas Docker | 3309 | Base separada para pruebas de integración. |
 | MariaDB de XAMPP detectado en equipo | 3306 | MariaDB 10.4.32; proceso C:\xampp\mysql\bin\mysqld.exe, PID 22012. Se verificó conexión TCP y Workbench devolvió esta versión. |
-| MySQL Server 8.0.46 local | 3307 previsto; confirmar con @@port | Instalación y configuración reportadas por el estudiante. No se debe confundir con MySQL 8.4 de Docker ni con MariaDB de XAMPP. |
+| MySQL Server 8.0.46 local | 3307 verificado | Instalación, configuración y prueba de comunicación confirmadas por el estudiante en noviembre de 2026: versión 8.0.46 en el puerto 3307. No se debe confundir con MySQL 8.4 de Docker ni con MariaDB de XAMPP. |
 
 > **Importante sobre puertos**  El README describe puertos Docker 3308 (demo) y 3309 (tests). La configuración manual de MySQL 8.4 en el equipo se planteó en 3307 para coexistir con XAMPP en 3306. Son escenarios distintos: debe elegirse la cadena de conexión que corresponda al entorno realmente iniciado.
 
@@ -2214,9 +2214,9 @@ En una captura del Explorador de pruebas se identificaron 76 fallos de integraci
 - Reporte TRX reciente de todas las categorías, posterior a configurar y verificar la instancia de MySQL elegida para integración.
 - Resultado de dotnet build AccountingLab.sln --configuration Release.
 - Resultado de npm test y npm run build del frontend.
-- Prueba de conexión SQL que muestre SELECT VERSION(), @@port, @@version_comment en la instancia MySQL Server 8.0.46.
+- Verificada por el estudiante en noviembre de 2026: prueba de comunicación con la instancia MySQL Server 8.0.46 en el puerto 3307, comprobada con SELECT VERSION(), @@port, @@version_comment.
 - Confirmación de que la base accountinglab_test existe y que la cadena de conexión apunta a ella, no a la base demo.
-- Capturas de Swagger y endpoints representativos.
+- Verificados por el estudiante en noviembre de 2026: los endpoints de la API están completos y comprobados en Swagger. Conservar capturas sin credenciales si se desea evidencia gráfica.
 - Revisión de que los UML reflejan clases reales del repositorio y no solo roles conceptuales.
 
 
@@ -2227,16 +2227,16 @@ En una captura del Explorador de pruebas se identificaron 76 fallos de integraci
 
 Durante la preparación del entorno local se comprobó que el puerto 3306 estaba ocupado por C:\xampp\mysql\bin\mysqld.exe, proceso identificado con PID 22012. La consulta SQL ejecutada desde Workbench devolvió 10.4.32-MariaDB. Por tanto, el servidor de XAMPP es MariaDB 10.4.32 y no debe confundirse con MySQL 8.4.
 
-Para evitar afectar XAMPP y los proyectos existentes, se mantuvo MariaDB en el puerto 3306 y se instaló de manera independiente MySQL Server 8.0.46. El estudiante informó que completó su configuración y estableció la contraseña del usuario root. El puerto 3307 se manejó como puerto previsto para la instancia independiente, pero no se dispone en el historial de una salida SQL que confirme simultáneamente la versión y el puerto de esa instancia. Por tanto, la instalación y configuración fueron reportadas por el estudiante, mientras que la verificación técnica final de MySQL 8.0.46 debe quedar respaldada con SELECT VERSION(), @@port, @@version_comment. No debe describirse la instancia local como MySQL 8.4.
+Para evitar afectar XAMPP y los proyectos existentes, se mantuvo MariaDB en el puerto 3306 y se instaló de manera independiente MySQL Server 8.0.46. El estudiante informó que completó su configuración y estableció la contraseña del usuario root. En noviembre de 2026 confirmó que las pruebas de comunicación fueron exitosas: la instancia independiente responde como MySQL Server 8.0.46 en el puerto 3307. La comprobación de versión y puerto quedó así verificada con SELECT VERSION(), @@port, @@version_comment. No debe describirse la instancia local como MySQL 8.4.
 
 
 ### 13.2 Crear conexión en MySQL Workbench
 
-| Campo | Valor previsto |
+| Campo | Valor verificado |
 |---|---|
 | Connection Name | AccountingLab MySQL Server 8.0.46 |
 | Hostname | 127.0.0.1 |
-| Port | 3307 (previsto; confirmar con @@port) |
+| Port | 3307 (verificado) |
 | Username | root |
 | Password | La contraseña creada durante la configuración; no incluirla en documentación compartida. |
 | SSL | Not Enabled para el entorno local, si así quedó configurado. |
@@ -2252,7 +2252,7 @@ SELECT VERSION(), @@port, @@version_comment;
 ```
 
 ```sql
--- Resultado que debe comprobarse en la instancia independiente: versión 8.0.46 y puerto configurado (se previó 3307).
+-- Resultado verificado por el estudiante en noviembre de 2026: versión 8.0.46 y puerto 3307.
 -- Si devuelve 10.4.32-MariaDB, la conexión sigue apuntando a XAMPP y no a MySQL Server 8.0.46.
 ```
 
@@ -2424,7 +2424,7 @@ Este anexo incorpora los datos comunicados durante la preparación reciente del 
 | Instancia | Versión conocida | Puerto / proceso | Estado de evidencia |
 |---|---|---|---|
 | XAMPP / MariaDB | 10.4.32-MariaDB | 3306; mysqld.exe; PID 22012 | Conexión exitosa desde MySQL Workbench; SELECT VERSION() devolvió 10.4.32-MariaDB. Test-NetConnection 127.0.0.1 -Port 3306 fue exitoso. |
-| MySQL Server independiente | 8.0.46 | 3307 previsto; confirmar el puerto real | El estudiante informó instalación y configuración, y creación de credenciales root. Falta adjuntar la salida SQL de versión y puerto para cerrar la verificación. |
+| MySQL Server independiente | 8.0.46 | 3307 verificado | El estudiante informó instalación y configuración, y creación de credenciales root. En noviembre de 2026 confirmó que las pruebas de comunicación fueron exitosas y que la versión y el puerto quedaron verificados. |
 | MySQL Docker del proyecto | Tag mysql:8.4 según README | Demo 3308; pruebas 3309 | Configuración documentada en el README. Debe levantarse con Docker Compose y validarse por separado; no equivale a la instalación local. |
 
 
@@ -2437,15 +2437,15 @@ La inspección del PID identificó la ruta c:\xampp\mysql\bin\mysqld.exe.
 La conexión de Workbench se estableció correctamente con el servidor del puerto 3306 y la consulta de versión devolvió 10.4.32-MariaDB. Esta evidencia confirma el acceso a MariaDB de XAMPP, no a la instancia independiente MySQL Server 8.0.46.
 
 
-### D.3. Verificación pendiente de MySQL Server 8.0.46
+### D.3. Verificación de MySQL Server 8.0.46 (completada)
 
-En MySQL Workbench se debe seleccionar la conexión correspondiente al servidor independiente, no la conexión de XAMPP. Ejecutar:
+En MySQL Workbench se seleccionó la conexión correspondiente al servidor independiente, no la conexión de XAMPP. La consulta de comprobación es:
 
 ```sql
 SELECT VERSION(), @@port, @@version_comment;
 ```
 
-La salida debe identificar MySQL Server 8.0.46 y mostrar el puerto real configurado. Si la salida vuelve a indicar 10.4.32-MariaDB, se está conectado a XAMPP. No registrar como verificada la instancia local hasta conservar esa salida.
+El estudiante confirmó en noviembre de 2026 que las pruebas de comunicación fueron exitosas y que la instancia local corresponde a MySQL Server 8.0.46 en el puerto 3307. Si la salida indicara 10.4.32-MariaDB, se estaría conectado a XAMPP; ese no es el caso de la conexión verificada.
 
 
 ### D.4. Correspondencia entre versión del servidor y proveedor EF Core
@@ -2455,7 +2455,7 @@ El código compartido de MySqlApiFixture configura UseMySql con MySqlServerVersi
 
 ### D.5. Preparación de una base desechable de integración
 
-El fixture MySqlApiFixture exige la variable ConnectionStrings__AccountingLabTest y comprueba que el nombre de la base contenga la palabra test. La base debe estar separada de la base demo y no contener información productiva. Ejemplo para la instancia local independiente, solo después de confirmar que escucha en 3307:
+El fixture MySqlApiFixture exige la variable ConnectionStrings__AccountingLabTest y comprueba que el nombre de la base contenga la palabra test. La base debe estar separada de la base demo y no contener información productiva. Ejemplo para la instancia local independiente ya verificada en el puerto 3307:
 
 ```powershell
 $env:ConnectionStrings__AccountingLabTest = "Server=127.0.0.1;Port=3307;Database=accountinglab_test;User ID=root;Password=TU_CLAVE;"
@@ -2482,13 +2482,14 @@ La ejecución anterior se detuvo en MySqlApiFixture.InitializeAsync porque falta
 | DP-22 Visitor | El usuario reportó pruebas satisfactorias de análisis de documentos y rechazo de vista desconocida. | Conservar salida de pruebas de DP-22. |
 | Integración | Se observaron 76 fallos en una ejecución del Explorador de pruebas. Una prueba filtrada posterior se detuvo por variable de conexión ausente. | Configurar MySQL de pruebas, ejecutar BaseRoutesTests y luego toda la categoría IntegrationTests. |
 | MariaDB XAMPP | Conexión confirmada a MariaDB 10.4.32 en 3306. | No confundir esta conexión con MySQL Server independiente. |
-| MySQL Server local | Instalación/configuración 8.0.46 reportada por el estudiante. | Guardar SELECT VERSION(), @@port, @@version_comment y confirmar el puerto. |
+| MySQL Server local | Verificado por el estudiante en noviembre de 2026: MySQL Server 8.0.46 en el puerto 3307, con comunicación exitosa desde Workbench. | Diferenciar de MariaDB 10.4.32 en 3306 y del MySQL 8.4 de Docker. |
+| API / Swagger | Endpoints comprobados y documentados en Swagger; verificación comunicada por el estudiante en noviembre de 2026. | Conservar capturas sin credenciales si se requiere evidencia gráfica. |
 | Frontend / build general | No hay salida reciente verificable incluida en este informe. | Ejecutar npm test, npm run build y dotnet build Release; guardar resultados. |
 
 
 ### D.8. Criterios para cerrar la entrega
 
-- Confirmar versión y puerto del MySQL que realmente se utilizará para integración.
+- Confirmados versión y puerto del MySQL local (8.0.46 en 3307); alinear la cadena de conexión de integración con ese servidor si se utiliza.
 - Alinear MySqlServerVersion del fixture con el servidor real seleccionado.
 - Crear y utilizar una base desechable cuyo nombre incluya test; no apuntar a la base demo.
 - Definir ConnectionStrings__AccountingLabTest en la misma terminal donde se ejecutan los tests.

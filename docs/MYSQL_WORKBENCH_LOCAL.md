@@ -42,14 +42,14 @@ En una pestaña SQL de Workbench ejecutar:
 SELECT VERSION(), @@port, @@version_comment;
 ```
 
-- Resultado esperado: versión `8.0.46` y puerto `3307`.
+- Resultado verificado por el estudiante en noviembre de 2026: versión
+  `8.0.46` y puerto `3307`; las pruebas de comunicación fueron exitosas.
 - Si devuelve `10.4.32-MariaDB`, la conexión está apuntando a XAMPP (3306),
   no al MySQL Server independiente.
 
-Conservar esa salida como evidencia: la versión y el puerto fueron
-informados/configurados por el estudiante, pero la comprobación SQL es la
-que cierra la verificación (ver Anexo D del
-[informe técnico](INFORME_TECNICO_ACADEMICO.md)).
+La verificación quedó confirmada por el estudiante. Si se desea evidencia
+gráfica, conservar la salida SQL sin incluir contraseñas ni datos reales
+(ver Anexo D del [informe técnico](INFORME_TECNICO_ACADEMICO.md)).
 
 ## 4. Base desechable para integración
 

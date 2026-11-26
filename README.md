@@ -582,8 +582,13 @@ El estado de validación debe actualizarse con los resultados reales de
 cada ejecución. No se debe marcar una suite como aprobada basándose
 únicamente en ejecuciones parciales o en resultados históricos.
 
-Al momento de consolidar la documentación del proyecto se registraron
-los siguientes puntos:
+Además de los registros históricos, en noviembre de 2026 el estudiante
+confirmó que las pruebas de comunicación con MySQL Server 8.0.46 en
+`127.0.0.1:3307` fueron exitosas y que los endpoints de la API están
+completos y comprobados en Swagger. Consulta la
+[guía de MySQL Server local y Workbench](docs/MYSQL_WORKBENCH_LOCAL.md).
+
+Los puntos registrados al consolidar la documentación fueron:
 
 -   Se comunicaron avances satisfactorios en pruebas de varios desafíos
     académicos.
